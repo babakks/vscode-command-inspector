@@ -1,26 +1,65 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import {
+    askAndDumpExtensions,
+    dumpExtensionCommandsAsJSON,
+    dumpCommandsAsJSON,
+    askAndInvokeCommand,
+} from "./command";
+import { echo } from "./tools";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-command-inspector" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('vscode-command-inspector.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Command Inspector!');
-	});
-
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(
+        makeDumpCommandsAsJSON(context),
+        makeDumpExtensionCommandsAsJSON(context),
+        makeDumpExtensionAsJSON(context),
+        makeInvokeCommand(context),
+        makeEchoCommand(context),
+    );
 }
 
-// this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
+
+function makeDumpCommandsAsJSON(
+    context: vscode.ExtensionContext
+): vscode.Disposable {
+    return vscode.commands.registerCommand(
+        "vscode-command-inspector.dumpCommandsAsJSON",
+        () => dumpCommandsAsJSON(context)
+    );
+}
+
+function makeDumpExtensionCommandsAsJSON(
+    context: vscode.ExtensionContext
+): vscode.Disposable {
+    return vscode.commands.registerCommand(
+        "vscode-command-inspector.dumpExtensionCommandsAsJSON",
+        () => dumpExtensionCommandsAsJSON(context)
+    );
+}
+
+function makeDumpExtensionAsJSON(
+    context: vscode.ExtensionContext
+): vscode.Disposable {
+    return vscode.commands.registerCommand(
+        "vscode-command-inspector.dumpExtensionAsJSON",
+        () => askAndDumpExtensions(context)
+    );
+}
+
+
+function makeInvokeCommand(
+    context: vscode.ExtensionContext
+): vscode.Disposable {
+    return vscode.commands.registerCommand(
+        "vscode-command-inspector.invokeCommand",
+        () => askAndInvokeCommand(context)
+    );
+}
+
+
+function makeEchoCommand(context: vscode.ExtensionContext): vscode.Disposable {
+    return vscode.commands.registerCommand(
+        "vscode-command-inspector.tools.echo",
+        (...args) => echo(...args)
+    );
+}
