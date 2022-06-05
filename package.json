@@ -3,6 +3,7 @@
   "displayName": "Command Inspector",
   "description": "Inspect VS Code commands at runtime",
   "version": "0.0.1",
+  "publisher": "babakks",
   "engines": {
     "vscode": "^1.50.0"
   },
