@@ -7,6 +7,10 @@
   "engines": {
     "vscode": "^1.50.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/babakks/vscode-command-inspector"
+  },
   "categories": [
     "Other"
   ],
@@ -32,6 +36,7 @@
     "onCommand:vscode-command-inspector.invokeCommand",
     "onCommand:vscode-command-inspector.tools.echo"
   ],
+  "icon": "images/icon.png",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
