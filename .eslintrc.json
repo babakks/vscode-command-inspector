@@ -14,7 +14,13 @@
         "curly": "warn",
         "eqeqeq": "warn",
         "no-throw-literal": "warn",
-        "semi": "off"
+        "semi": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ]
     },
     "ignorePatterns": [
         "out",

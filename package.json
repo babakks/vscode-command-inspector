@@ -1,7 +1,7 @@
 {
   "name": "vscode-command-inspector",
   "displayName": "Command Inspector",
-  "description": "Inspect VS Code commands at runtime",
+  "description": "Inspect VS Code commands and invoke them from the command palette",
   "version": "0.0.1",
   "publisher": "babakks",
   "engines": {
@@ -21,17 +21,49 @@
     "call",
     "browse",
     "developer",
-    "tools"
+    "tools",
+    "dump",
+    "echo"
   ],
   "activationEvents": [
-    "onCommand:vscode-command-inspector.helloWorld"
+    "onCommand:vscode-command-inspector.dumpCommandsAsJSON",
+    "onCommand:vscode-command-inspector.dumpExtensionCommandsAsJSON",
+    "onCommand:vscode-command-inspector.dumpExtensionAsJSON",
+    "onCommand:vscode-command-inspector.invokeCommand",
+    "onCommand:vscode-command-inspector.tools.echo"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-command-inspector.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-command-inspector.dumpCommandsAsJSON",
+        "title": "Command Inspector: Dump commands (JSON)",
+        "shortTitle": "Dump commands (JSON)",
+        "icon": "$(json)"
+      },
+      {
+        "command": "vscode-command-inspector.dumpExtensionCommandsAsJSON",
+        "title": "Command Inspector: Dump extension commands (JSON)",
+        "shortTitle": "Dump extension commands (JSON)",
+        "icon": "$(json)"
+      },
+      {
+        "command": "vscode-command-inspector.dumpExtensionAsJSON",
+        "title": "Command Inspector: Dump extension(s) (JSON)",
+        "shortTitle": "Dump extension(s) (JSON)",
+        "icon": "$(json)"
+      },
+      {
+        "command": "vscode-command-inspector.invokeCommand",
+        "title": "Command Inspector: Invoke command",
+        "shortTitle": "Invoke command",
+        "ijcon": "$(debug-start)"
+      },
+      {
+        "command": "vscode-command-inspector.tools.echo",
+        "title": "Command Inspector (Tools): Echo",
+        "shortTitle": "Echo",
+        "icon": "$(unmute)"
       }
     ]
   },

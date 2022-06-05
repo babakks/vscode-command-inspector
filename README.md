@@ -1,70 +1,44 @@
-# vscode-command-inspector README
+# VS Code Commands Inspector
 
-This is the README for your extension "vscode-command-inspector". After writing up a brief description, we recommend including the following sections.
+**Commands Inspector** lets you explore VS Code commands (both native and those added by third-party extensions), invoke them (with or without arguments) and explore under-the-hood of the installed extensions. 🕵️
 
-## Features
+## Dump all commands
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+1. Open the command bar (`Ctrl`+`Shift`+`P`).
+1. Type in `Dump commands (JSON)` and press `Enter`.
 
-For example if there is an image subfolder under your extension project workspace:
+## Invoke a command (with/without arguments)
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open the command bar (`Ctrl`+`Shift`+`P`).
+1. Type in `Invoke command` and press `Enter`.
+1. Select the command from the list or type in a part of its identifier then press `Enter`.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+   ℹ️ As an example you can try executing the `echo` command defined in this extension, named `vscode-command-inspector.tools.echo` or the builtin `Toggle Terminal` named as `workbench.action.terminal.toggleTerminal`.
 
-## Requirements
+1. Select if you'd want to invoke the command:
+   - Without argument.
+   - With arguments read from a JSON file.
+   - With arguments read from the active document/selection.
+   - With arguments in plain JSON (i.e., to be typed in the command bar).
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+   ℹ️ Provide arguments as a JSON array. For example:
 
-## Extension Settings
+   ```json
+   [
+     "First argument",
+     { "name": "Second argument as on object" }
+   ]
+   ```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. A notification message would display the result of the action, if any.
 
-For example:
+## Dump commands grouped by extensions
 
-This extension contributes the following settings:
+1. Open the command bar (`Ctrl`+`Shift`+`P`).
+1. Type in `Dump extension commands (JSON)` and press `Enter`.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+## Dump extension manifests
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+1. Open the command bar (`Ctrl`+`Shift`+`P`).
+1. Type in `Dump extension(s) (JSON)` and press `Enter`.
+1. Select the extensions you'd want to see their manifests (i.e., `package.json` file).
